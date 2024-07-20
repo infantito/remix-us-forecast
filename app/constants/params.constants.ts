@@ -50,4 +50,11 @@ const GeocoderUrlParams = {
   format: 'format',
 } as const
 
-export { GeocoderBenchmark, GeocoderPathParams, GeocoderUrlParams }
+const WeatherForecastPathParams = {
+  /**
+   * Use the `/points` endpoint to retrieve the current grid forecast endpoint
+   */
+  points: 'points',
+} as const
+
+export { GeocoderBenchmark, GeocoderPathParams, GeocoderUrlParams, WeatherForecastPathParams }

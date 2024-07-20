@@ -9,6 +9,10 @@ const API = {
    * The resulting `lat/long` is calculated along an address range.
    */
   geocoder: 'https://geocoding.geo.census.gov/geocoder',
+  /**
+   * To obtain the grid forecast
+   */
+  weather: 'https://api.weather.gov',
 } as const
 
 export { API, API_RESPONSE_FORMAT }
