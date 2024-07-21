@@ -1,5 +1,12 @@
+import type { getWeatherByAddressApi } from '~/services'
+
 type AddressRouteParams = {
   address: string
 }
 
-export type { AddressRouteParams }
+type AddressLoaderResponse = {
+  forecast: ReturnType<typeof getWeatherByAddressApi>
+  q: string
+}
+
+export type { AddressRouteParams, AddressLoaderResponse }

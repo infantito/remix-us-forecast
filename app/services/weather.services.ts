@@ -1,7 +1,7 @@
 import { API, WeatherForecastPathParams } from '~/constants'
 import { addressGeocodingApi } from './geocoding.services'
 
-function weatherByCoordinatesApi(params: Geocoder.Coordinates) {
+function weatherByCoordinatesApi(params: Geocoder.Coordinates, signal: AbortSignal) {
   const { x: longitude, y: latitude } = params
 
   const endpoint = `${API.weather}/${WeatherForecastPathParams.points}/${latitude},${longitude}` as const
@@ -15,13 +15,14 @@ function weatherByCoordinatesApi(params: Geocoder.Coordinates) {
       'Content-Type': 'application/json',
     },
     body: null,
+    signal,
   })
 
   return response
 }
 
-async function getWeatherByAddressApi(address: string) {
-  const response = await addressGeocodingApi({ address })
+async function getWeatherByAddressApi(address: string, signal: AbortSignal) {
+  const response = await addressGeocodingApi({ address }, signal)
 
   const addressData: Geocoder.AddressResponse = await response.json()
 
@@ -30,7 +31,7 @@ async function getWeatherByAddressApi(address: string) {
   if (hasAddressMatch) {
     const [addressMatch] = addressData.result.addressMatches
 
-    const weatherResponse = await weatherByCoordinatesApi(addressMatch.coordinates)
+    const weatherResponse = await weatherByCoordinatesApi(addressMatch.coordinates, signal)
 
     const weather: Weather.PointResponse = await weatherResponse.json()
 

@@ -1,6 +1,6 @@
 function Weather() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="mt-4 flex items-center justify-center">
       <div className="flex flex-col bg-white rounded p-4 w-full max-w-xs">
         <div className="font-bold text-xl">Sydney</div>
         <div className="text-sm text-gray-500">Thursday 10 May 2020</div>

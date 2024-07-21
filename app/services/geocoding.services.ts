@@ -1,7 +1,7 @@
 import type { GeocodingAddressParams } from '~/typings'
 import { API, API_RESPONSE_FORMAT, GeocoderBenchmark, GeocoderPathParams, GeocoderUrlParams } from '~/constants'
 
-function addressGeocodingApi(param: GeocodingAddressParams) {
+function addressGeocodingApi(param: GeocodingAddressParams, signal: AbortSignal) {
   const endpoint = `${API.geocoder}/${GeocoderPathParams.locations}/${GeocoderPathParams.address}` as const
 
   const url = new URL(endpoint)
@@ -19,6 +19,7 @@ function addressGeocodingApi(param: GeocodingAddressParams) {
       'Content-Type': 'application/json',
     },
     body: null,
+    signal,
   })
 
   return response
