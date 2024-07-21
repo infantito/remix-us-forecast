@@ -8,7 +8,7 @@ import { Footer, GeneralErrorBoundary } from './components'
 
 function meta() {
   const descriptorList: MetaDescriptor[] = [
-    { title: 'U.S Forecast' },
+    { title: 'U.S Weather Forecast' },
     { name: 'description', content: 'U.S 7-day forecast for a specified address' },
   ]
 

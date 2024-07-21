@@ -54,7 +54,7 @@ function Index() {
           <div className="app-logo align-baseline text-white my-auto">
             <h1 className="align-baseline my-auto text-xl font-bold">Weather App</h1>
           </div>
-          <Form role="search" className="flex items-center max-w-sm w-full">
+          <Form role="search" className="flex items-center max-w-sm w-full" key={data.q}>
             <Searcher />
           </Form>
         </div>
