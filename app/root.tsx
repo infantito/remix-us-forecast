@@ -1,8 +1,27 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, type MetaFunction } from '@remix-run/react'
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, type MetaDescriptor } from '@remix-run/react'
+import type { LinkDescriptor } from '@remix-run/server-runtime'
 import { Analytics } from '@vercel/analytics/react'
 
-const meta: MetaFunction = () => {
-  return [{ title: 'U.S Forecast' }, { name: 'description', content: 'U.S 7-day forecast for a specified address' }]
+import globalStyles from '~/styles/global.css?url'
+import tailwindStyles from '~/styles/tailwind.css?url'
+import { Footer } from './components'
+
+function meta() {
+  const descriptorList: MetaDescriptor[] = [
+    { title: 'U.S Forecast' },
+    { name: 'description', content: 'U.S 7-day forecast for a specified address' },
+  ]
+
+  return descriptorList
+}
+
+function links() {
+  const linkList: LinkDescriptor[] = [
+    { rel: 'stylesheet', href: tailwindStyles },
+    { rel: 'stylesheet', href: globalStyles },
+  ]
+
+  return linkList
 }
 
 function Document(props: Required<React.PropsWithChildren<unknown>>) {
@@ -17,7 +36,7 @@ function Document(props: Required<React.PropsWithChildren<unknown>>) {
         <Links />
       </head>
       <body>
-        {children}
+        <main>{children}</main>
         <ScrollRestoration />
         <Scripts />
         <Analytics />
@@ -26,16 +45,15 @@ function Document(props: Required<React.PropsWithChildren<unknown>>) {
   )
 }
 
-function Layout() {
+function App() {
   return (
     <Document>
-      <Outlet />
+      <article className="weather py-8">
+        <Outlet />
+        <Footer />
+      </article>
     </Document>
   )
-}
-
-function App() {
-  return <Layout />
 }
 
 function ErrorBoundary() {
@@ -48,4 +66,4 @@ function ErrorBoundary() {
 
 export default App
 
-export { ErrorBoundary, meta }
+export { ErrorBoundary, meta, links }

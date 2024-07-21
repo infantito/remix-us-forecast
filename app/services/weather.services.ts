@@ -21,7 +21,24 @@ function weatherByCoordinatesApi(params: Geocoder.Coordinates, signal: AbortSign
   return response
 }
 
-async function getWeatherByAddressApi(address: string, signal: AbortSignal) {
+async function getWeatherForecastListByUrlApi(
+  url: Weather.PointResponse['properties']['forecast'],
+  signal: AbortSignal
+) {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: null,
+    signal,
+  })
+
+  return response
+}
+
+async function getWeatherForecastByAddressApi(address: string, signal: AbortSignal) {
   const response = await addressGeocodingApi({ address }, signal)
 
   const addressData: Geocoder.AddressResponse = await response.json()
@@ -35,10 +52,14 @@ async function getWeatherByAddressApi(address: string, signal: AbortSignal) {
 
     const weather: Weather.PointResponse = await weatherResponse.json()
 
-    return { address: addressMatch, weather }
+    const forecastResponse = await getWeatherForecastListByUrlApi(weather.properties.forecast, signal)
+
+    const forecast: Weather.ForecastResponse = await forecastResponse.json()
+
+    return { address: addressMatch, forecast }
   }
 
   return null
 }
 
-export { weatherByCoordinatesApi, getWeatherByAddressApi }
+export { weatherByCoordinatesApi, getWeatherForecastByAddressApi }

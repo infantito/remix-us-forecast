@@ -4,17 +4,21 @@ import { useLocation, useNavigation, useSubmit } from '@remix-run/react'
 import useDebounce from './use-debounce'
 
 const useSearcher = () => {
-  const [value, setValue] = React.useState('')
+  const navigation = useNavigation()
+
+  const location = useLocation()
+
+  const [value, setValue] = React.useState(() => {
+    const urlSearchParams = new URLSearchParams(location.search)
+
+    return urlSearchParams.get('q') ?? ''
+  })
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
   }
 
   const debounceQuery = useDebounce({ value })
-
-  const navigation = useNavigation()
-
-  const location = useLocation()
 
   const submit = useSubmit()
 

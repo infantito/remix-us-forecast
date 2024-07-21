@@ -8,7 +8,4 @@ installGlobals()
 
 export default defineConfig({
   plugins: [remix({ presets: [vercelPreset()] }), tsconfigPaths()],
-  optimizeDeps: {
-    exclude: ['@heroicons/react'],
-  },
 })
