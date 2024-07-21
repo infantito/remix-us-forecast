@@ -26,5 +26,5 @@
     // Vite takes care of building everything, not tsc.
     "noEmit": true
   },
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "postcss.config.js"]
 }
