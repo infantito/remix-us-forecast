@@ -17,6 +17,15 @@ input[type='search']::-webkit-search-results-decoration {
   -webkit-appearance: none;
 }
 
+.truncate-3 {
+  display: -webkit-box;
+  max-width: 200px;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Footer */
 .bubble {
   bottom: -10rem;
@@ -42,6 +51,7 @@ input[type='search']::-webkit-search-results-decoration {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
+
 @keyframes pathAnim-0 {
   0% {
     d: path(

@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 
 import globalStyles from '~/styles/global.css?url'
 import tailwindStyles from '~/styles/tailwind.css?url'
-import { Footer } from './components'
+import { Footer, GeneralErrorBoundary } from './components'
 
 function meta() {
   const descriptorList: MetaDescriptor[] = [
@@ -59,7 +59,9 @@ function App() {
 function ErrorBoundary() {
   return (
     <Document>
-      <h1>Something went wrong</h1>
+      <div className="flex-1">
+        <GeneralErrorBoundary />
+      </div>
     </Document>
   )
 }

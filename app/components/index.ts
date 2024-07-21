@@ -1,5 +1,6 @@
 export { default as DayNightSwitch } from './day-night-switch'
 export { default as Footer } from './footer'
+export { default as GeneralErrorBoundary } from './general-error-boundary'
 export { default as Loading } from './loading'
 export { default as NoData } from './no-data'
 export { default as NoQuery } from './no-query'

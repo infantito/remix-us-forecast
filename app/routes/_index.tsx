@@ -5,7 +5,7 @@ import { Await, defer, Form, useLoaderData } from '@remix-run/react'
 import type { WeatherListProps } from '~/typings'
 import { getWeatherForecastByAddressApi } from '~/services'
 import { useToggle } from '~/hooks'
-import { DayNightSwitch, Loading, NoData, NoQuery, Searcher, Weather } from '~/components'
+import { DayNightSwitch, GeneralErrorBoundary, Loading, NoData, NoQuery, Searcher, Weather } from '~/components'
 import darkModeStyles from '~/styles/dark-mode.css?url'
 
 function links() {
@@ -88,6 +88,20 @@ function Index() {
   )
 }
 
+function ErrorBoundary() {
+  return (
+    <GeneralErrorBoundary
+      statusHandlers={{
+        404: args => {
+          const { params } = args
+
+          return <p>No weather forecast with the address "{params.address}" exists</p>
+        },
+      }}
+    />
+  )
+}
+
 export default Index
 
-export { links, loader }
+export { links, loader, ErrorBoundary }

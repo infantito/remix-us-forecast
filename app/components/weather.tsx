@@ -19,7 +19,12 @@ function Weather(props: WeatherProps) {
           <h4 className="font-medium text-6xl">
             {celsius}°<span className="font-semibold text-4xl relative bottom-4">C</span>
           </h4>
-          <span className="text-center font-semibold">{weather.shortForecast}</span>
+          <span
+            className="text-center cursor-help font-normal text-sm text-gray-500 truncate-3"
+            title={weather.shortForecast}
+          >
+            {weather.shortForecast}
+          </span>
         </div>
         <div className="flex flex-row justify-between mt-4">
           <div className="flex flex-col items-center">

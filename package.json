@@ -8,7 +8,7 @@
     "dev": "remix vite:dev",
     "lint": "eslint .",
     "typecheck": "tsc",
-    "format:fix": "prettier --write \"src/**/*.{js,ts,tsx,json}\""
+    "format:fix": "prettier --write \"app/**/*.{js,ts,tsx,json}\""
   },
   "dependencies": {
     "@remix-run/node": "2.10.0",
